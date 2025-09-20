@@ -210,7 +210,7 @@ const ContactSection = () => {
               <CardContent className="space-y-3">
                 {achievements.map((achievement, index) => (
                   <div key={index} className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
                     <p className="text-gray-300 text-sm">{achievement}</p>
                   </div>
                 ))}
