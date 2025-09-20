@@ -117,7 +117,7 @@ const ContactSection = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-orange-500"
+                      className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-amber-400"
                     />
                   </div>
                   <div>
