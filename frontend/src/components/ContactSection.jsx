@@ -247,13 +247,13 @@ const ContactSection = () => {
             I'm excited to explore opportunities where we can create meaningful impact through technology.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Badge variant="outline" className="border-orange-500 text-orange-500 px-4 py-2">
+            <Badge variant="outline" className="border-amber-400 text-amber-400 px-4 py-2">
               AI & Machine Learning
             </Badge>
             <Badge variant="outline" className="border-teal-400 text-teal-400 px-4 py-2">
               Data Science
             </Badge>
-            <Badge variant="outline" className="border-orange-500 text-orange-500 px-4 py-2">
+            <Badge variant="outline" className="border-amber-400 text-amber-400 px-4 py-2">
               Backend Development
             </Badge>
             <Badge variant="outline" className="border-teal-400 text-teal-400 px-4 py-2">
