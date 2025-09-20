@@ -162,7 +162,7 @@ const SkillsSection = () => {
                   key={index} 
                   className="flex items-start space-x-3 p-4 bg-gray-800 rounded-lg hover:bg-gray-750 transition-colors"
                 >
-                  <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
                   <span className="text-gray-300">{cert}</span>
                 </div>
               ))}
