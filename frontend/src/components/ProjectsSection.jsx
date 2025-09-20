@@ -150,7 +150,7 @@ const ProjectsSection = () => {
         <div className="text-center mt-12">
           <Button 
             variant="outline" 
-            className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-8 py-3 transition-all"
+            className="border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-white px-8 py-3 transition-all"
           >
             View All Projects on GitHub
           </Button>
