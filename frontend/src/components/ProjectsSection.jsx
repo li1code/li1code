@@ -136,7 +136,7 @@ const ProjectsSection = () => {
                   </Button>
                   <Button 
                     size="sm" 
-                    className="bg-orange-500 hover:bg-orange-600 text-white transition-all"
+                    className="bg-amber-500 hover:bg-amber-600 text-white transition-all"
                   >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Live Demo
