@@ -98,7 +98,7 @@ const ContactSection = () => {
           Ready to collaborate on innovative AI projects or discuss opportunities in data science? I'd love to hear from you!
         </p>
 
-        <div className="grid lg:grid-cols-2 gap-12 text-left">
+        <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <Card className="bg-gray-900 border-gray-800">
             <CardHeader>
