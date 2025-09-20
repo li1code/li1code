@@ -68,7 +68,7 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="py-20 px-6 bg-gray-950">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-4">
+        <h2 className="text-4xl font-bold text-center mb-4 text-gray-300">
           Featured <span className="text-amber-400">Projects</span>
         </h2>
         <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
