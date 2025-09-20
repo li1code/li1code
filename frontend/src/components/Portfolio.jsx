@@ -170,7 +170,7 @@ const Portfolio = () => {
             <div className="space-y-6">
               <Card className="bg-gray-900 border-gray-800">
                 <CardHeader>
-                  <CardTitle className="flex items-center text-orange-500">
+                  <CardTitle className="flex items-center text-amber-400">
                     <GraduationCap className="w-5 h-5 mr-2" />
                     Education
                   </CardTitle>
