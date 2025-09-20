@@ -99,7 +99,7 @@ const Portfolio = () => {
             <div className="flex flex-wrap gap-4">
               <Button 
                 onClick={() => scrollToSection('contact')}
-                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+                className="bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
               >
                 Get In Touch
               </Button>
