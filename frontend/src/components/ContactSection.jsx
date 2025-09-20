@@ -63,7 +63,7 @@ const ContactSection = () => {
       label: "LinkedIn",
       value: "kalash-dang",
       href: "https://www.linkedin.com/in/kalash-dang/",
-      color: "orange"
+      color: "amber"
     },
     {
       icon: <Github className="w-5 h-5" />,
