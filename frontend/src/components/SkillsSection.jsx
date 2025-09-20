@@ -89,9 +89,9 @@ const SkillsSection = () => {
 
   const getColorClasses = (color) => {
     return {
-      text: color === 'orange' ? 'text-orange-500' : 'text-teal-400',
-      border: color === 'orange' ? 'border-orange-500/50' : 'border-teal-400/50',
-      bg: color === 'orange' ? 'bg-orange-500/10' : 'bg-teal-400/10'
+      text: color === 'orange' ? 'text-amber-400' : 'text-teal-400',
+      border: color === 'orange' ? 'border-amber-400/50' : 'border-teal-400/50',
+      bg: color === 'orange' ? 'bg-amber-400/10' : 'bg-teal-400/10'
     };
   };
 
