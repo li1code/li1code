@@ -90,11 +90,11 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="py-20 px-6 bg-gray-950">
-      <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-4">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-4xl font-bold text-center mb-4">
           Let's <span className="text-amber-400">Connect</span>
         </h2>
-        <p className="text-gray-400 mb-12 max-w-2xl mx-auto">
+        <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
           Ready to collaborate on innovative AI projects or discuss opportunities in data science? I'd love to hear from you!
         </p>
 
