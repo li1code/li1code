@@ -75,7 +75,7 @@ const ProjectsSection = () => {
           A showcase of my technical expertise in AI, data science, and backend development with quantifiable results and real-world impact.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-8 text-left">
+        <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <Card 
               key={index} 
