@@ -174,7 +174,7 @@ const SkillsSection = () => {
         <div className="mt-12 text-center">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="space-y-2">
-              <h3 className="text-2xl font-bold text-orange-500">15+</h3>
+              <h3 className="text-2xl font-bold text-amber-400">15+</h3>
               <p className="text-gray-400">Programming Languages & Technologies</p>
             </div>
             <div className="space-y-2">
@@ -182,7 +182,7 @@ const SkillsSection = () => {
               <p className="text-gray-400">Professional Certifications</p>
             </div>
             <div className="space-y-2">
-              <h3 className="text-2xl font-bold text-orange-500">50+</h3>
+              <h3 className="text-2xl font-bold text-amber-400">50+</h3>
               <p className="text-gray-400">Team Members Led</p>
             </div>
           </div>
