@@ -264,9 +264,9 @@ const Portfolio = () => {
                 <div className="flex justify-between items-start">
                   <div>
                     <CardTitle className="text-white">President - Cultural Society</CardTitle>
-                    <CardDescription className="text-orange-500">Panache Club, ASU</CardDescription>
+                    <CardDescription className="text-amber-400">Panache Club, ASU</CardDescription>
                   </div>
-                  <Badge variant="outline" className="border-orange-500 text-orange-500">Sep 2024 - Present</Badge>
+                  <Badge variant="outline" className="border-amber-400 text-amber-400">Sep 2024 - Present</Badge>
                 </div>
               </CardHeader>
               <CardContent className="space-y-3">
