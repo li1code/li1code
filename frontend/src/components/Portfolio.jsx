@@ -259,7 +259,7 @@ const Portfolio = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gray-900 border-gray-800 hover:border-orange-500/50 transition-colors">
+            <Card className="bg-gray-900 border-gray-800 hover:border-amber-400/50 transition-colors">
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>
