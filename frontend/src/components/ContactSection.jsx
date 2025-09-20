@@ -149,7 +149,7 @@ const ContactSection = () => {
                   onChange={handleInputChange}
                   required
                   rows={5}
-                  className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-orange-500 resize-none"
+                  className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-amber-400 resize-none"
                 />
                 
                 <Button 
