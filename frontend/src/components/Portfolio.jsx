@@ -86,7 +86,7 @@ const Portfolio = () => {
           <div className="space-y-8 animate-fade-in">
             <div className="space-y-4">
               <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-                Kalash <span className="text-orange-500">Dang</span>
+                Kalash <span className="text-amber-400">Dang</span>
               </h1>
               <h2 className="text-2xl md:text-3xl text-teal-400 font-light">
                 AI Generalist & Data Science Student
