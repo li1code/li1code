@@ -106,7 +106,7 @@ const ProjectsSection = () => {
                   <ul className="space-y-1">
                     {project.highlights.map((highlight, idx) => (
                       <li key={idx} className="text-sm text-gray-400 flex items-start">
-                        <span className="text-orange-500 mr-2">•</span>
+                        <span className="text-amber-400 mr-2">•</span>
                         {highlight}
                       </li>
                     ))}
