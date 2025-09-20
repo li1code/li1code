@@ -77,7 +77,7 @@ const ContactSection = () => {
       label: "Location",
       value: "Gurugram, India",
       href: null,
-      color: "orange"
+      color: "amber"
     }
   ];
 
