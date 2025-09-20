@@ -118,7 +118,7 @@ const ProjectsSection = () => {
                     <Badge 
                       key={idx} 
                       variant="outline" 
-                      className="border-gray-700 text-gray-300 hover:border-orange-500 hover:text-orange-500 transition-colors"
+                      className="border-gray-700 text-gray-300 hover:border-amber-400 hover:text-amber-400 transition-colors"
                     >
                       {tech}
                     </Badge>
