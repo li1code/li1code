@@ -99,7 +99,7 @@ const SkillsSection = () => {
     <section id="skills" className="py-20 px-6 bg-gray-950">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-4">
-          Technical <span className="text-orange-500">Skills</span>
+          Technical <span className="text-amber-400">Skills</span>
         </h2>
         <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
           A comprehensive overview of my technical expertise and professional competencies, built through hands-on projects and continuous learning.
