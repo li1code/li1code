@@ -103,7 +103,7 @@ const ContactSection = () => {
           <Card className="bg-gray-900 border-gray-800">
             <CardHeader>
               <CardTitle className="text-white flex items-center">
-                <Send className="w-5 h-5 mr-2 text-orange-500" />
+                <Send className="w-5 h-5 mr-2 text-amber-400" />
                 Send Me a Message
               </CardTitle>
             </CardHeader>
