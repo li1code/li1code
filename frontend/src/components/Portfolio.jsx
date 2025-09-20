@@ -148,7 +148,7 @@ const Portfolio = () => {
       {/* About Section */}
       <section id="about" className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12">
+          <h2 className="text-4xl font-bold text-center mb-12 text-gray-300">
             About <span className="text-amber-400">Me</span>
           </h2>
           
