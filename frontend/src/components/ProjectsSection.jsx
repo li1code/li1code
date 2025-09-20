@@ -88,7 +88,7 @@ const ProjectsSection = () => {
                       {project.icon}
                     </div>
                     <div>
-                      <CardTitle className="text-white group-hover:text-orange-500 transition-colors">
+                      <CardTitle className="text-white group-hover:text-amber-400 transition-colors">
                         {project.title}
                       </CardTitle>
                     </div>
