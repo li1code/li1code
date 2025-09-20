@@ -217,12 +217,12 @@ const Portfolio = () => {
                 <div className="flex justify-between items-start">
                   <div>
                     <CardTitle className="text-white flex items-center">
-                      <Briefcase className="w-5 h-5 mr-2 text-orange-500" />
+                      <Briefcase className="w-5 h-5 mr-2 text-amber-400" />
                       Technical Lead
                     </CardTitle>
                     <CardDescription className="text-teal-400">E-Cell, Apeejay Stya University</CardDescription>
                   </div>
-                  <Badge variant="outline" className="border-orange-500 text-orange-500">Jul 2025 - Present</Badge>
+                  <Badge variant="outline" className="border-amber-400 text-amber-400">Jul 2025 - Present</Badge>
                 </div>
               </CardHeader>
               <CardContent className="space-y-3">
