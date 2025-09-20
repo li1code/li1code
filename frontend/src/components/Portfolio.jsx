@@ -127,12 +127,12 @@ const Portfolio = () => {
 
           <div className="flex justify-center">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-teal-400/20 rounded-full blur-2xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 to-teal-400/20 rounded-full blur-2xl"></div>
               <Avatar className="w-80 h-80 border-4 border-gray-800 relative z-10">
                 <AvatarImage 
                   src="https://customer-assets.emergentagent.com/job_data-portfolio-47/artifacts/1newjduy_Screenshot%202025-09-20%20230905.png" 
                   alt="Kalash Dang"
-                  className="object-cover"
+                  className="object-cover object-top"
                 />
                 <AvatarFallback className="text-4xl bg-gray-800">KD</AvatarFallback>
               </Avatar>
