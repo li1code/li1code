@@ -181,7 +181,7 @@ const ContactSection = () => {
                       {contact.href ? (
                         <a 
                           href={contact.href}
-                          className={`${contact.color === 'orange' ? 'text-orange-500 hover:text-orange-400' : 'text-teal-400 hover:text-teal-300'} transition-colors font-medium`}
+                          className={`${contact.color === 'amber' ? 'text-amber-400 hover:text-amber-300' : 'text-teal-400 hover:text-teal-300'} transition-colors font-medium`}
                           target={contact.href.startsWith('http') ? '_blank' : undefined}
                           rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                         >
