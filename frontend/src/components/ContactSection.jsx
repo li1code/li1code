@@ -173,7 +173,7 @@ const ContactSection = () => {
               <CardContent className="space-y-4">
                 {contactInfo.map((contact, index) => (
                   <div key={index} className="flex items-center space-x-4 p-3 bg-gray-800 rounded-lg hover:bg-gray-750 transition-colors">
-                    <div className={`p-2 rounded-lg ${contact.color === 'orange' ? 'bg-orange-500/10 text-orange-500' : 'bg-teal-400/10 text-teal-400'}`}>
+                    <div className={`p-2 rounded-lg ${contact.color === 'amber' ? 'bg-amber-500/10 text-amber-400' : 'bg-teal-400/10 text-teal-400'}`}>
                       {contact.icon}
                     </div>
                     <div className="flex-1">
