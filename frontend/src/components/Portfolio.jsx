@@ -149,7 +149,7 @@ const Portfolio = () => {
       <section id="about" className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12">
-            About <span className="text-orange-500">Me</span>
+            About <span className="text-amber-400">Me</span>
           </h2>
           
           <div className="grid md:grid-cols-2 gap-12 items-start">
