@@ -49,7 +49,7 @@ const ContactSection = () => {
       label: "Email",
       value: "dangkalash478@gmail.com",
       href: "mailto:dangkalash478@gmail.com",
-      color: "orange"
+      color: "amber"
     },
     {
       icon: <Phone className="w-5 h-5" />,
