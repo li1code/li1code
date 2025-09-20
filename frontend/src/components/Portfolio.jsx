@@ -68,8 +68,8 @@ const Portfolio = () => {
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
-                  className={`transition-colors duration-300 hover:text-orange-500 ${
-                    activeSection === id ? 'text-orange-500' : 'text-gray-300'
+                  className={`transition-colors duration-300 hover:text-amber-400 ${
+                    activeSection === id ? 'text-amber-400' : 'text-gray-300'
                   }`}
                 >
                   {label}
