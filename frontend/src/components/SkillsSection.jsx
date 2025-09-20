@@ -105,7 +105,7 @@ const SkillsSection = () => {
           A comprehensive overview of my technical expertise and professional competencies, built through hands-on projects and continuous learning.
         </p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 text-left">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {skillCategories.map((category, index) => {
             const colors = getColorClasses(category.color);
             return (
