@@ -113,13 +113,13 @@ const Portfolio = () => {
             </div>
 
             <div className="flex space-x-6 pt-4">
-              <a href="mailto:dangkalash478@gmail.com" className="text-gray-400 hover:text-orange-500 transition-colors">
+              <a href="mailto:dangkalash478@gmail.com" className="text-gray-400 hover:text-amber-400 transition-colors">
                 <Mail className="w-6 h-6" />
               </a>
-              <a href="https://www.linkedin.com/in/kalash-dang/" className="text-gray-400 hover:text-orange-500 transition-colors">
+              <a href="https://www.linkedin.com/in/kalash-dang/" className="text-gray-400 hover:text-amber-400 transition-colors">
                 <Linkedin className="w-6 h-6" />
               </a>
-              <a href="https://github.com/li1code" className="text-gray-400 hover:text-orange-500 transition-colors">
+              <a href="https://github.com/li1code" className="text-gray-400 hover:text-amber-400 transition-colors">
                 <Github className="w-6 h-6" />
               </a>
             </div>
