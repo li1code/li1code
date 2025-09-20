@@ -228,7 +228,7 @@ const ContactSection = () => {
               </Button>
               <Button 
                 variant="outline" 
-                className="flex-1 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-all duration-300"
+                className="flex-1 border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-white transition-all duration-300"
               >
                 <Download className="w-4 h-4 mr-2" />
                 Download Resume
