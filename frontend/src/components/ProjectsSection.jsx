@@ -79,7 +79,7 @@ const ProjectsSection = () => {
           {projects.map((project, index) => (
             <Card 
               key={index} 
-              className="bg-gray-900 border-gray-800 hover:border-orange-500/50 transition-all duration-300 hover:scale-105 group"
+              className="bg-gray-900 border-gray-800 hover:border-amber-400/50 transition-all duration-300 hover:scale-105 group"
             >
               <CardHeader>
                 <div className="flex items-start justify-between">
