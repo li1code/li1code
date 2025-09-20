@@ -61,7 +61,7 @@ const ProjectsSection = () => {
 
   const getColorClasses = (color) => {
     return color === 'orange' 
-      ? 'text-orange-500 border-orange-500/50' 
+      ? 'text-amber-400 border-amber-400/50' 
       : 'text-teal-400 border-teal-400/50';
   };
 
