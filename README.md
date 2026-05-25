@@ -1,9 +1,74 @@
-# 💫 About Me:
-🔭 I'm currently working on<br>Building production-grade AI systems at the intersection of backend infrastructure and agentic AI — multi-agent pipelines, RAG architectures, and real-world deployment workflows that actually ship.<br><br>👥 I'm looking to collaborate on<br>Applied AI projects where the problem is real and the solution hasn't been built yet. Especially anything involving agentic systems, AI integration strategy, or backend infrastructure that needs to think.<br><br>🤝 I'm looking for help with<br>Scaling ideas that work in isolation into systems that survive the real world. Also — anyone who's thought deeply about where agentic AI is taking software architecture.<br><br>🌱 I'm currently learning<br>How to make AI systems not just intelligent but accountable — exploring the design principles behind agentic workflows, multi-agent orchestration, and what responsible production AI actually looks like beyond the demo.<br><br>💬 Ask me about<br>Building with Gemini and LangChain, multi-agent system design, AI workflow automation, or why most people are using AI as a shortcut when they could be using it as a language.<br><br>⚡ Fun fact<br>I once conceptualised a new programming paradigm mid-hackathon while simultaneously helping everyone around me debug their installations. I didn't realise I'd done either until later.
+# Kalash Dang
 
+I build AI systems that are meant to survive contact with the real world — not just impress in a demo.
 
-## 🌐 Socials:
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/kalash-dang/) [![Medium](https://img.shields.io/badge/Medium-12100E?logo=medium&logoColor=white)](https://medium.com/@dangkalash478) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:dangkalash478@gmail.com) 
+My work sits at the intersection of agentic AI, backend infrastructure, and product thinking. I've shipped multi-agent pipelines, RAG architectures, and automation-heavy backends. But I also write, sketch, and think in frameworks — because the systems I find most interesting are the ones that change how people understand a problem, not just solve it.
 
-# 💻 Tech Stack:
-![C](https://img.shields.io/badge/c-%2300599C.svg?style=plastic&logo=c&logoColor=white) ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=plastic&logo=c%2B%2B&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=plastic&logo=openjdk&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=plastic&logo=html5&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=plastic&logo=python&logoColor=ffdd54) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=plastic&logo=typescript&logoColor=white) ![Go](https://img.shields.io/badge/go-%2300ADD8.svg?style=plastic&logo=go&logoColor=white) ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=plastic&logo=google-cloud&logoColor=white) ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=plastic&logo=netlify&logoColor=#00C7B7) ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=plastic&logo=firebase) ![Angular.js](https://img.shields.io/badge/angular.js-%23E23237.svg?style=plastic&logo=angularjs&logoColor=white) ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=plastic&logo=django&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=plastic&logo=fastapi) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=plastic&logo=node.js&logoColor=white) ![Next JS](https://img.shields.io/badge/Next-black?style=plastic&logo=next.js&logoColor=white) ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=plastic&logo=npm&logoColor=white) ![Nodemon](https://img.shields.io/badge/NODEMON-%23323330.svg?style=plastic&logo=nodemon&logoColor=%BBDEAD) ![Three js](https://img.shields.io/badge/threejs-black?style=plastic&logo=three.js&logoColor=white) ![Streamlit](https://img.shields.io/badge/Streamlit-%23FE4B4B.svg?style=plastic&logo=streamlit&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=plastic&logo=react&logoColor=%2361DAFB) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=plastic&logo=tailwind-css&logoColor=white) ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=plastic&logo=vite&logoColor=white) ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=plastic&logo=yarn&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=plastic&logo=mongodb&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=plastic&logo=mysql&logoColor=white) ![Firebase](https://img.shields.io/badge/firebase-a08021?style=plastic&logo=firebase&logoColor=ffcd34) ![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?style=plastic&logo=Canva&logoColor=white) ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=plastic&logo=numpy&logoColor=white) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=plastic&logo=pandas&logoColor=white) ![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=plastic&logo=PyTorch&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=plastic&logo=scikit-learn&logoColor=white) ![Scipy](https://img.shields.io/badge/SciPy-%230C55A5.svg?style=plastic&logo=scipy&logoColor=%white) ![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=plastic&logo=TensorFlow&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=plastic&logo=Matplotlib&logoColor=black) ![Keras](https://img.shields.io/badge/Keras-%23D00000.svg?style=plastic&logo=Keras&logoColor=white) ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=plastic&logo=postman&logoColor=white)
+Currently co-building a product company. Graduating 2027. Planning further ahead than most people are comfortable with.
+
+> *"Most people use AI as a shortcut. I use it as a language."*
+
+---
+
+## What I'm Working On
+
+- **AtomAlign** — an operational intelligence platform for goal tracking and team visibility, built on PostgreSQL + Node.js
+- **Action Oriented Programming (AOP)** — a paradigm I'm developing with a professor: actions, not objects, as the primary unit in agentic system design
+
+---
+
+## Stack
+
+**Languages**
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Go](https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![SQL](https://img.shields.io/badge/SQL-4479A1?style=flat-square&logo=postgresql&logoColor=white)
+
+**AI & Agentic Systems**
+
+![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white)
+![Gemini](https://img.shields.io/badge/Gemini_API-4285F4?style=flat-square&logo=google&logoColor=white)
+![Make.com](https://img.shields.io/badge/Make.com-6D00CC?style=flat-square&logo=make&logoColor=white)
+![N8N](https://img.shields.io/badge/n8n-EA4B71?style=flat-square&logo=n8n&logoColor=white)
+
+**Backend & Databases**
+
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
+
+**Cloud & Infrastructure**
+
+![Google Cloud](https://img.shields.io/badge/Google_Cloud-4285F4?style=flat-square&logo=google-cloud&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-DD2C00?style=flat-square&logo=firebase&logoColor=white)
+![Cloud Run](https://img.shields.io/badge/Cloud_Run-4285F4?style=flat-square&logo=google-cloud&logoColor=white)
+
+---
+
+## A Few Things I Believe
+
+- Most systems fail not because the logic is wrong, but because the assumptions underneath it were never questioned.
+- The best engineers I've met think like architects and write like editors.
+- Building in public is an act of intellectual honesty — it means you're accountable to what you claimed you were going to make.
+
+---
+
+## Certifications
+
+![Google Gen AI](https://img.shields.io/badge/Google_Gen_AI_Academy_2.0-4285F4?style=flat-square&logo=google&logoColor=white)
+![Vertex AI](https://img.shields.io/badge/Vertex_AI_Prompt_Design-34A853?style=flat-square&logo=google-cloud&logoColor=white)
+![Cloud Run](https://img.shields.io/badge/Serverless_on_Cloud_Run-4285F4?style=flat-square&logo=google-cloud&logoColor=white)
+![AI Fluency](https://img.shields.io/badge/AI_Fluency:_Framework_%26_Foundations-1C1C1C?style=flat-square&logo=anthropic&logoColor=white)
+
+---
+
+## Find Me
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-kalash--dang.vercel.app-000000?style=flat-square&logo=vercel&logoColor=white)](https://kalash-dang.vercel.app/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Kalash_Dang-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/kalash-dang/)
+[![Medium](https://img.shields.io/badge/Medium-@dangkalash478-000000?style=flat-square&logo=medium&logoColor=white)](https://medium.com/@dangkalash478)
+[![Email](https://img.shields.io/badge/Email-dangkalash478@gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:dangkalash478@gmail.com)
