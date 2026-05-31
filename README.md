@@ -1,19 +1,26 @@
 # Kalash Dang
 
-I build AI systems that are meant to survive contact with the real world — not just impress in a demo.
-
-My work sits at the intersection of agentic AI, backend infrastructure, and product thinking. I've shipped multi-agent pipelines, RAG architectures, and automation-heavy backends. But I also write, sketch, and think in frameworks — because the systems I find most interesting are the ones that change how people understand a problem, not just solve it.
-
-Currently co-building a product company. Graduating 2027. Planning further ahead than most people are comfortable with.
-
 > *"Most people use AI as a shortcut. I use it as a language."*
+
+ I'm a final year computer science student, an AI developer and according to my college - a faculty member. I wasn't hired. They just stopped being able to tell the difference.
+
+I build AI systems that are meant to survive contact with the real world - not just impress in a demo.
+
+My work sits at the intersection of agentic AI, backend infrastructure, and product thinking. I've shipped multi-agent pipelines, RAG architectures and automation - heavy backends. I also write, sketch and think in frameworks - because the systems I find most interesting are the ones that change how people understand a problem, not just solve it.
+
+I'm twenty - one years old.
+
+Don't worry — I find it uncomfortable too.
+
+Graduating 2027. Planning further ahead than most people are comfortable with. I'm looking forward to being in this one - mostly because nobody here knows me well enough to have an opinion yet.
+
+Give it time.
 
 ---
 
 ## What I'm Working On
 
 - **AtomAlign** — an operational intelligence platform for goal tracking and team visibility, built on PostgreSQL + Node.js
-- **Action Oriented Programming (AOP)** — a paradigm I'm developing with a professor: actions, not objects, as the primary unit in agentic system design
 
 ---
 
