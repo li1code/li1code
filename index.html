@@ -1049,46 +1049,57 @@
         }
       }
 
-      /* Bloom layer — drawn with CSS radial-gradient, sized via JS */
-      #entry-bloom {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 0;
-        height: 0;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(255, 255, 255, 0.95) 0%,
-          rgba(180, 210, 255, 0.55) 30%,
-          rgba(30, 90, 160, 0.2) 65%,
-          transparent 100%
-        );
-        pointer-events: none;
-        opacity: 0;
-        transition: opacity 0.25s ease;
+      /* Scroll lock */
+      body.intro-lock {
+        overflow: hidden;
       }
 
-      /* HE reveal element — over black after Phase 3 */
-      #he-reveal {
-        position: fixed;
+      /* Cinematic stages */
+      #he-stage,
+      #name-stage {
+        position: absolute;
         inset: 0;
-        z-index: 1100;
+        z-index: 10;
         display: flex;
         align-items: center;
         justify-content: center;
         pointer-events: none;
         opacity: 0;
-        /* visibility controlled by JS */
       }
 
-      #he-reveal span {
+      #he-text,
+      #name-text {
         font-family: "Playfair Display", Georgia, serif;
         font-weight: 700;
-        font-size: clamp(5rem, 10vw, 9rem);
-        color: #e8e4dc;
+        color: rgba(245, 242, 236, 0.98);
         line-height: 1;
+      }
+
+      #he-text {
+        font-size: clamp(6rem, 11vw, 11rem);
+        filter: blur(14px);
+        transform: scale(1.08);
+      }
+
+      #name-text {
+        font-size: clamp(4rem, 8vw, 8rem);
+        letter-spacing: 0.08em;
+        filter: blur(20px);
+        transform: scaleX(0.82);
+      }
+
+      #he-stage.visible,
+      #name-stage.visible {
+        opacity: 1;
+      }
+
+      #he-stage.visible #he-text,
+      #name-stage.visible #name-text {
+        filter: blur(0px);
+        transform: scale(1);
+        transition:
+          filter 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       /* Mobile — disable parallax (handled in JS) */
@@ -1122,12 +1133,14 @@
         </p>
         <div id="entry-attr">— An Average B.Tech CS Engineer</div>
       </div>
-      <div id="entry-bloom"></div>
+      <div id="he-stage">
+        <div id="he-text">HE</div>
+      </div>
+      <div id="name-stage">
+        <div id="name-text">KALASH DANG</div>
+      </div>
       <div id="entry-enter">↓ Enter the Blueprint</div>
     </div>
-
-    <!-- HE reveal element — lives outside overlay, over black -->
-    <div id="he-reveal"><span>HE</span></div>
 
     <canvas id="cosmos"></canvas>
     <div id="prog"></div>
@@ -1731,7 +1744,8 @@
     </div>
     <!-- /content -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
     <!-- ═══════════════════════════════════════════════════
          ENTRY SEQUENCE JS — added block
@@ -1744,86 +1758,75 @@
          ═══════════════════════════════════════════════════ -->
     <script>
       // Flag that tells the existing HE transition to stand down
-      // (we patch the existing IIFE inline via the flag check injected below)
       window.__entryControlsHE = true;
 
       (function () {
         "use strict";
 
+        document.body.classList.add("intro-lock");
+
         // ── ENTRY THREE.JS SCENE ─────────────────────────────────
         const eCanvas = document.getElementById("entry-canvas");
         const eRenderer = new THREE.WebGLRenderer({
           canvas: eCanvas,
-          antialias: false,
+          antialias: true,
           alpha: false,
         });
-        eRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        eRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         eRenderer.setSize(window.innerWidth, window.innerHeight);
         eRenderer.setClearColor(0x0a0a08, 1);
+        eRenderer.toneMapping = THREE.ACESFilmicToneMapping;
+        eRenderer.toneMappingExposure = 0.82;
 
         const eScene = new THREE.Scene();
         const eCamera = new THREE.PerspectiveCamera(
           60,
           window.innerWidth / window.innerHeight,
           0.1,
-          500,
+          2000,
         );
-        eCamera.position.z = 1;
+        eCamera.position.z = 120;
 
-        // Denser particle field than cosmos background
-        const PARTICLE_COUNT = 3800;
+        // Denser particle field for cinematic attraction
+        const PARTICLE_COUNT = 12000;
+        const eGeo = new THREE.BufferGeometry();
         const positions = new Float32Array(PARTICLE_COUNT * 3);
-        // Store original positions for the spiral animation
-        const originPos = new Float32Array(PARTICLE_COUNT * 3);
-        const colors = new Float32Array(PARTICLE_COUNT * 3);
-
-        const colorPalette = [
-          [0.91, 0.894, 0.863], // #e8e4dc white
-          [0.471, 0.667, 0.8], // blue tint
-          [0.784, 0.722, 0.478], // #c8b87a gold
-          [0.667, 0.667, 0.667], // grey
-        ];
 
         for (let i = 0; i < PARTICLE_COUNT; i++) {
-          const x = (Math.random() - 0.5) * 140;
-          const y = (Math.random() - 0.5) * 80;
-          const z = (Math.random() - 0.5) * 140;
-          positions[i * 3] = originPos[i * 3] = x;
-          positions[i * 3 + 1] = originPos[i * 3 + 1] = y;
-          positions[i * 3 + 2] = originPos[i * 3 + 2] = z;
-          const c =
-            colorPalette[Math.floor(Math.random() * colorPalette.length)];
-          colors[i * 3] = c[0];
-          colors[i * 3 + 1] = c[1];
-          colors[i * 3 + 2] = c[2];
+          const r = 300 + Math.random() * 800;
+          const theta = Math.random() * Math.PI * 2;
+          const phi = Math.random() * Math.PI;
+
+          positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+          positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+          positions[i * 3 + 2] = (Math.random() - 0.5) * 600;
         }
 
-        const eGeo = new THREE.BufferGeometry();
         eGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-        eGeo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
         const eMat = new THREE.PointsMaterial({
-          size: 0.38,
-          sizeAttenuation: false,
+          color: new THREE.Color("#bfc9d6"),
+          size: 1.2,
           transparent: true,
-          opacity: 0.7,
-          vertexColors: true,
+          opacity: 0.72,
+          depthWrite: false,
+          blending: THREE.AdditiveBlending,
         });
         const ePoints = new THREE.Points(eGeo, eMat);
         eScene.add(ePoints);
 
         // ── STATE ────────────────────────────────────────────────
-        let phase = "idle"; // idle | blackhole | threshold | done
-        let phaseStart = 0;
-        let animFrame;
-        const eClock = new THREE.Clock();
+        let phase = "idle"; // idle | blackhole | done
+        let gravityStrength = 0;
+        let spiralStrength = 0;
         let disposed = false;
+        let animFrame;
 
         // ── DOM REFS ─────────────────────────────────────────────
         const overlay = document.getElementById("entry-overlay");
         const quoteWrap = document.getElementById("entry-quote-wrap");
         const enterEl = document.getElementById("entry-enter");
-        const bloom = document.getElementById("entry-bloom");
-        const heReveal = document.getElementById("he-reveal");
+        const heStage = document.getElementById("he-stage");
+        const nameStage = document.getElementById("name-stage");
 
         // Portfolio elements to reveal
         const portfolioEls = [
@@ -1865,150 +1868,139 @@
         function triggerBlackhole() {
           if (phase !== "idle") return;
           phase = "blackhole";
-          phaseStart = eClock.getElapsedTime();
 
           // Hide enter text immediately
           enterEl.style.display = "none";
 
-          // Fade quote
-          quoteWrap.style.transition = "opacity 0.6s ease";
-          quoteWrap.style.opacity = "0";
+          // Build cinematic GSAP timeline
+          const tl = gsap.timeline();
 
-          // Bloom expand
-          bloom.style.opacity = "1";
-          let bloomSize = 0;
-          const bloomInterval = setInterval(function () {
-            bloomSize = Math.min(bloomSize + 14, 180);
-            bloom.style.width = bloomSize * 2 + "px";
-            bloom.style.height = bloomSize * 2 + "px";
-            if (bloomSize >= 180) clearInterval(bloomInterval);
-          }, 16);
+          // Phase 2: Ramping up gravity and spiral + blurring/fading quote (2.5s)
+          tl.to({}, {
+            duration: 2.5,
+            onUpdate: function () {
+              const p = this.progress();
+              gravityStrength = p * 0.15;
+              spiralStrength = p * 0.04;
+              eCamera.position.z = 120 - p * 30; // Zoom camera in slightly
 
-          // Store bloom interval ref for cleanup
-          overlay._bloomInterval = bloomInterval;
+              gsap.set(quoteWrap, {
+                filter: `blur(${p * 6}px)`,
+                y: p * -12,
+                opacity: 1 - p * 0.6
+              });
+            }
+          });
+
+          // Phase 3: Intense gravity pull + fading quote completely (1.5s)
+          tl.to({}, {
+            duration: 1.5,
+            onUpdate: function () {
+              const p = this.progress();
+              gravityStrength = 0.15 + p * 2.85; // Gravity goes up to 3.0
+              spiralStrength = 0.04 + p * 0.06;  // Spiral goes to 0.10
+              eCamera.position.z = 90 - p * 40;  // Zoom in camera to 50
+
+              gsap.set(quoteWrap, {
+                opacity: 0.4 - p * 0.4,
+                filter: `blur(${6 + p * 12}px)`,
+                scale: 1 - p * 0.1
+              });
+            }
+          });
+
+          // Phase 4: Fade particles to 0 (0.2s)
+          tl.to(eMat, {
+            opacity: 0,
+            duration: 0.2
+          });
+
+          // Phase 5: Black pause/silence (0.8s)
+          tl.to({}, { duration: 0.8 });
+
+          // Phase 6: HE reveal (1.6s)
+          tl.call(() => {
+            heStage.classList.add("visible");
+          });
+          tl.to({}, { duration: 1.6 });
+
+          // Phase 7: HE fade out & KALASH DANG reveal (1.6s)
+          tl.call(() => {
+            gsap.to("#he-stage", {
+              opacity: 0,
+              duration: 1.0
+            });
+            nameStage.classList.add("visible");
+          });
+          tl.to({}, { duration: 1.6 });
+
+          // Phase 8: Reveal background portfolio site, fade out overlay
+          tl.call(() => {
+            document.body.classList.add("site-reveal");
+            portfolioEls.forEach(function (el) {
+              el.style.visibility = "visible";
+            });
+
+            // Slide up name in background (existing mechanism)
+            const he = document.getElementById("s0-he");
+            const nameI = document.getElementById("s0-name-inner");
+            if (he) {
+              he.style.transition = "opacity .6s ease";
+              he.style.opacity = "0";
+            }
+            setTimeout(function () {
+              if (he) he.style.display = "none";
+              if (nameI) nameI.classList.add("revealed");
+            }, 650);
+
+            // Fade out overlay
+            gsap.to("#entry-overlay", {
+              opacity: 0,
+              duration: 1.5,
+              onComplete: () => {
+                overlay.remove();
+                disposeEntry();
+                document.body.classList.remove("intro-lock");
+              }
+            });
+          });
         }
 
         // ── ANIMATION LOOP ───────────────────────────────────────
         function eAnimate() {
           if (disposed) return;
           animFrame = requestAnimationFrame(eAnimate);
-          const t = eClock.getElapsedTime();
-          const pos = eGeo.attributes.position.array;
 
           if (phase === "idle") {
-            // Gentle slow rotation
-            ePoints.rotation.y = t * 0.0015;
-            ePoints.rotation.x = t * 0.0007;
-            eCamera.position.x = Math.sin(t * 0.04) * 1.0;
-            eCamera.position.y = Math.cos(t * 0.03) * 0.5;
-            eCamera.lookAt(0, 0, 0);
+            // Gentle slow rotation of particles
+            ePoints.rotation.z += 0.00025;
+            ePoints.rotation.y += 0.0001;
           } else if (phase === "blackhole") {
-            const elapsed = t - phaseStart;
-            // 0→1.2s: particles spiral toward center
-            const progress = Math.min(elapsed / 1.2, 1);
-            // Ease-in: slow start, rapid end
-            const ease = progress * progress * progress;
+            const pos = eGeo.attributes.position.array;
 
             for (let i = 0; i < PARTICLE_COUNT; i++) {
-              const ox = originPos[i * 3];
-              const oy = originPos[i * 3 + 1];
-              const oz = originPos[i * 3 + 2];
+              const ix = i * 3;
+              let x = pos[ix];
+              let y = pos[ix + 1];
+              let z = pos[ix + 2];
 
-              // Spiral: lerp toward 0 + angular sweep
-              const angle = ease * Math.PI * 4 * (1 + Math.random() * 0.1);
-              const dist = 1 - ease;
-              const r = Math.sqrt(ox * ox + oz * oz) * dist + ease * 0.1;
-              const currAngle = Math.atan2(oz, ox) + angle * 0.015;
+              const dx = -x;
+              const dy = -y;
+              const dz = -z;
 
-              pos[i * 3] = r * Math.cos(currAngle) * (1 - ease * 0.98);
-              pos[i * 3 + 1] = oy * (1 - ease * 0.98);
-              pos[i * 3 + 2] = r * Math.sin(currAngle) * (1 - ease * 0.98);
+              const dist = Math.sqrt(dx * dx + dy * dy + dz * dz) + 0.001;
+
+              const nx = dx / dist;
+              const ny = dy / dist;
+              const nz = dz / dist;
+
+              pos[ix] += nx * gravityStrength + (-ny * spiralStrength);
+              pos[ix + 1] += ny * gravityStrength + (nx * spiralStrength);
+              pos[ix + 2] += nz * gravityStrength;
             }
+
             eGeo.attributes.position.needsUpdate = true;
-            eMat.opacity = 0.7 * (1 - ease * 0.7);
-
-            if (elapsed >= 1.2 && phase === "blackhole") {
-              phase = "threshold";
-              phaseStart = t;
-              clearInterval(overlay._bloomInterval);
-            }
-          } else if (phase === "threshold") {
-            const elapsed = t - phaseStart;
-
-            // 0→0.4s: bloom collapses
-            if (elapsed < 0.4) {
-              const r = 180 * (1 - elapsed / 0.4);
-              bloom.style.width = r * 2 + "px";
-              bloom.style.height = r * 2 + "px";
-            } else {
-              bloom.style.width = "0";
-              bloom.style.height = "0";
-              bloom.style.opacity = "0";
-            }
-
-            // 0.4→0.7s: overlay fades to solid black
-            if (elapsed >= 0.4 && elapsed < 0.7) {
-              const p = (elapsed - 0.4) / 0.3;
-              overlay.style.background = "rgba(0,0,0," + p + ")";
-              eMat.opacity = 0.7 * 0.3 * (1 - p);
-            }
-
-            // 0.7s: solid black, hold
-            if (elapsed >= 0.7) {
-              overlay.style.background = "#000000";
-              eMat.opacity = 0;
-            }
-
-            // 1.2s: reveal portfolio elements (still behind black overlay)
-            if (elapsed >= 1.2) {
-              portfolioEls.forEach(function (el) {
-                el.style.visibility = "visible";
-              });
-            }
-
-            // 1.2s: show HE text
-            if (elapsed >= 1.2 && elapsed < 1.22) {
-              heReveal.style.opacity = "1";
-            }
-
-            // Hold HE for 1.5s → elapsed 2.7s
-            // Then HE fades over 1.2s → elapsed 3.9s
-            if (elapsed >= 2.7 && elapsed < 3.9) {
-              const p = (elapsed - 2.7) / 1.2;
-              // ease-in-out
-              const eased = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p;
-              heReveal.style.opacity = String(1 - eased);
-            }
-
-            // 3.9s: pause 0.4s, then begin name reveal + overlay fade
-            if (elapsed >= 4.3 && phase === "threshold") {
-              phase = "done";
-
-              // Begin KALASH DANG slide-up (the existing .s0-name-inner.revealed mechanism)
-              const he = document.getElementById("s0-he");
-              const nameI = document.getElementById("s0-name-inner");
-              // Neutralise existing HE (it's still visible in the hero, hidden under overlay)
-              if (he) {
-                he.style.transition = "opacity .6s ease";
-                he.style.opacity = "0";
-              }
-              setTimeout(function () {
-                if (he) he.style.display = "none";
-                if (nameI) nameI.classList.add("revealed");
-              }, 650);
-
-              // Fade black overlay out over 0.8s
-              overlay.style.transition = "opacity 0.8s ease";
-              overlay.style.opacity = "0";
-
-              setTimeout(function () {
-                // Cleanup: remove overlay and he-reveal from DOM
-                overlay.remove();
-                heReveal.remove();
-                // Dispose entry Three.js scene
-                disposeEntry();
-              }, 900);
-            }
+            ePoints.rotation.z += 0.0005;
           }
 
           eRenderer.render(eScene, eCamera);
