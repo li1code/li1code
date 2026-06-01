@@ -591,28 +591,29 @@
         position: relative;
         width: 100%;
         height: 100%;
-        padding: 2.2rem 1.8rem;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         background: #111110;
         box-sizing: border-box;
       }
-      .card-monogram {
-        font-family: var(--serif);
-        font-size: 5.5rem;
-        font-weight: 300;
-        color: rgba(200, 184, 122, 0.12);
-        text-align: center;
-        margin-top: 1rem;
-        user-select: none;
-        letter-spacing: -0.05em;
-        transition: color 0.4s, transform 0.4s, text-shadow 0.4s;
+      .card-logo-wrap {
+        width: 100%;
+        height: 210px;
+        background: #080807;
+        overflow: hidden;
+        position: relative;
+        border-bottom: 1px solid rgba(200, 184, 122, 0.05);
       }
-      .carousel-card.active .card-monogram {
-        color: var(--gold);
-        transform: scale(1.08);
-        text-shadow: 0 0 20px rgba(200, 184, 122, 0.1);
+      .card-logo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.65;
+        transition: opacity 0.4s, transform 0.4s;
+      }
+      .carousel-card.active .card-logo-img {
+        opacity: 0.95;
+        transform: scale(1.03);
       }
       .card-drafting-line {
         width: 100%;
@@ -2884,6 +2885,7 @@
           {
             name: "AtomAlign",
             initials: "Aa",
+            logo: "images/atomalign_logo.png",
             year: "2025",
             tech: ["PostgreSQL", "Prisma", "Node.js", "Next.js"],
             status: "Prototype",
@@ -2907,6 +2909,7 @@
           {
             name: "APL PitchSide",
             initials: "Ps",
+            logo: "images/pitchside_logo.png",
             year: "2025",
             tech: ["Gemini", "Multi-Agent AI", "Computer Vision"],
             status: "Prototype",
@@ -2932,6 +2935,7 @@
           {
             name: "BazaarBot AI",
             initials: "Bb",
+            logo: "images/bazaarbot_logo.png",
             year: "2025",
             tech: ["Gemini API", "Firebase", "Vertex AI"],
             status: "Hackathon",
@@ -2955,6 +2959,7 @@
           {
             name: "Nature's Beauty Salon",
             initials: "Ns",
+            logo: "images/salon_logo.png",
             year: "2025",
             tech: ["PostgreSQL", "Prisma", "Node.js", "Vanilla JS"],
             status: "Deployed",
@@ -2978,6 +2983,7 @@
           {
             name: "Data Analysis & Extraction Tool",
             initials: "Dt",
+            logo: "images/data_tool_logo.png",
             year: "2024",
             tech: ["Python", "Pandas", "Matplotlib"],
             status: "Prototype",
@@ -3001,6 +3007,7 @@
           {
             name: "Bill Management System",
             initials: "Bm",
+            logo: "images/bill_system_logo.png",
             year: "2024",
             tech: ["C++", "OOP", "File Handling"],
             status: "Prototype",
@@ -3056,16 +3063,17 @@
               card.className = "carousel-card";
               card.innerHTML = `
                 <div class="card-content-wrap">
-                  <!-- Monogram / Typography Logo -->
-                  <div class="card-monogram">${proj.initials}</div>
+                  <!-- Logo Image Container -->
+                  <div class="card-logo-wrap">
+                    <img class="card-logo-img" src="${proj.logo}" alt="${proj.name} Logo" draggable="false" />
+                  </div>
                   
-                  <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-end;">
-                    <!-- Drafting Divider -->
-                    <div class="card-drafting-line"></div>
-                    
-                    <!-- System Name & Spec -->
-                    <div class="card-system-code">${proj.name}</div>
-                    <div class="card-system-sub">SPEC_${proj.spec.split(" // ")[0]} // REV_${proj.year}</div>
+                  <!-- Bottom Specifications Section -->
+                  <div style="padding: 1.2rem 1.4rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; background: #111110; position: relative;">
+                    <div>
+                      <div class="card-system-code">${proj.name}</div>
+                      <div class="card-system-sub">SPEC_${proj.spec.split(" // ")[0]} // REV_${proj.year}</div>
+                    </div>
                   </div>
                   
                   <!-- Drafting Ticks -->
