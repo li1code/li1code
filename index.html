@@ -518,79 +518,608 @@
         font-size: 0.72rem;
       }
 
-      /* Projects */
-      .proj-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1px;
-        background: var(--b0);
-        border: 1px solid var(--b0);
+      /* Selected Systems Showcase */
+      .blueprint-floor {
+        position: relative;
+        background-image:
+          linear-gradient(rgba(200, 184, 122, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(200, 184, 122, 0.02) 1px, transparent 1px);
+        background-size: 40px 40px;
+        background-position: center;
+        border-top: 1px dashed rgba(200, 184, 122, 0.08);
+        border-bottom: 1px dashed rgba(200, 184, 122, 0.08);
+        overflow: hidden;
+        padding: 6rem 0 5rem 0;
         margin-bottom: 5rem;
       }
-      .proj-card {
-        background: var(--surf);
-        padding: 2rem;
+      .blueprint-coord {
+        position: absolute;
+        font-family: var(--mono);
+        font-size: 0.55rem;
+        color: rgba(200, 184, 122, 0.18);
+        letter-spacing: 0.06em;
+        pointer-events: none;
+        user-select: none;
+      }
+      .carousel-wrapper {
+        position: relative;
+        width: 100%;
+        height: 420px;
+        margin: 2.2rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 1200px;
+        touch-action: pan-y;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .carousel-track {
+        position: relative;
+        width: 280px;
+        height: 380px;
+        transform-style: preserve-3d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .carousel-card {
+        position: absolute;
+        width: 280px;
+        height: 380px;
+        background: #111110;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+        cursor: grab;
         display: flex;
         flex-direction: column;
-        gap: 0.65rem;
-        position: relative;
         overflow: hidden;
-        transition: background 0.3s;
-        cursor: default;
+        transition: border-color 0.4s, box-shadow 0.4s;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
       }
-      .proj-card::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
+      .carousel-card:active {
+        cursor: grabbing;
+      }
+      .carousel-card.active {
+        border-color: rgba(200, 184, 122, 0.35);
+        box-shadow:
+          0 30px 60px rgba(0, 0, 0, 0.55),
+          0 0 45px rgba(200, 184, 122, 0.04);
+      }
+      .card-content-wrap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 2.2rem 1.8rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: #111110;
+        box-sizing: border-box;
+      }
+      .card-monogram {
+        font-family: var(--serif);
+        font-size: 5.5rem;
+        font-weight: 300;
+        color: rgba(200, 184, 122, 0.12);
+        text-align: center;
+        margin-top: 1rem;
+        user-select: none;
+        letter-spacing: -0.05em;
+        transition: color 0.4s, transform 0.4s, text-shadow 0.4s;
+      }
+      .carousel-card.active .card-monogram {
+        color: var(--gold);
+        transform: scale(1.08);
+        text-shadow: 0 0 20px rgba(200, 184, 122, 0.1);
+      }
+      .card-drafting-line {
+        width: 100%;
         height: 1px;
-        background: var(--gold);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        background: linear-gradient(90deg, transparent, rgba(200, 184, 122, 0.15) 20%, rgba(200, 184, 122, 0.15) 80%, transparent);
+        margin: 1.2rem 0;
       }
-      .proj-card:hover {
-        background: var(--surf2);
+      .card-system-code {
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--tp);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 0.3rem;
       }
-      .proj-card:hover::after {
-        transform: scaleX(1);
-      }
-      .proj-tag {
+      .card-system-sub {
         font-family: var(--mono);
         font-size: 0.58rem;
         color: var(--tm);
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
+        letter-spacing: 0.08em;
       }
-      .proj-name {
-        font-family: var(--serif);
-        font-size: 1rem;
-        font-weight: 400;
-        color: var(--tp);
-        line-height: 1.3;
+      .card-tick {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-color: rgba(200, 184, 122, 0.2);
+        border-style: solid;
+        pointer-events: none;
+        transition: border-color 0.4s;
       }
-      .proj-desc {
-        font-size: 0.96rem;
-        color: var(--tp);
-        opacity: 0.82;
-        line-height: 1.75;
-        flex: 1;
+      .carousel-card.active .card-tick {
+        border-color: rgba(200, 184, 122, 0.45);
       }
-      .proj-stack {
+      .card-tick.top-left {
+        top: 12px;
+        left: 12px;
+        border-width: 1px 0 0 1px;
+      }
+      .card-tick.top-right {
+        top: 12px;
+        right: 12px;
+        border-width: 1px 1px 0 0;
+      }
+      .card-tick.bottom-left {
+        bottom: 12px;
+        left: 12px;
+        border-width: 0 0 1px 1px;
+      }
+      .card-tick.bottom-right {
+        bottom: 12px;
+        right: 12px;
+        border-width: 0 1px 1px 0;
+      }
+      .carousel-info-above {
+        text-align: center;
+        margin-bottom: 1rem;
+        height: 40px;
         display: flex;
-        flex-wrap: wrap;
-        gap: 0.3rem;
-        margin-top: 0.3rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
-      .pill {
+      .carousel-info-above h3 {
+        font-family: var(--serif);
+        font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        line-height: 1.1;
+        margin: 0;
+      }
+      .carousel-info-above h3 a {
+        color: var(--tp);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .carousel-info-above h3 a:hover {
+        color: var(--gold);
+      }
+      .carousel-info-below {
+        text-align: center;
+        margin-top: 1.5rem;
+        min-height: 90px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .carousel-metadata-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.2rem;
+        margin-bottom: 0.65rem;
         font-family: var(--mono);
-        font-size: 0.7rem;
-        letter-spacing: 0.07em;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .meta-year {
+        color: var(--tm);
+      }
+      .meta-status {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--ts);
+      }
+      .status-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: var(--gold);
+        display: inline-block;
+        box-shadow: 0 0 6px var(--gold);
+      }
+      .meta-divider {
+        width: 4px;
+        height: 4px;
+        background-color: var(--b1);
+        transform: rotate(45deg);
+      }
+      .carousel-description {
+        font-family: var(--sans);
+        font-size: 0.85rem;
+        color: var(--ts);
+        max-width: 460px;
+        line-height: 1.6;
+        margin-bottom: 0.85rem;
+      }
+      .carousel-tech-stack {
+        display: flex;
+        gap: 0.35rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+      }
+      .carousel-tech-stack .pill {
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.06em;
         color: var(--tm);
         background: var(--gold-faint);
         border: 1px solid var(--b0);
         padding: 0.15rem 0.5rem;
+      }
+      .view-system-btn {
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0.4rem 1rem;
+        position: relative;
+        transition: color 0.3s;
+      }
+      .view-system-btn::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 1rem;
+        right: 1rem;
+        height: 1px;
+        background-color: var(--gold);
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.3s ease;
+      }
+      .view-system-btn:hover {
+        color: var(--tp);
+      }
+      .view-system-btn:hover::after {
+        transform: scaleX(1);
+        background-color: var(--tp);
+      }
+
+      /* Notebook Modal Overlay */
+      .notebook-modal-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        background-color: rgba(10, 10, 8, 0.95);
+        backdrop-filter: blur(12px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .notebook-modal-overlay.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .notebook-modal-container {
+        width: 90%;
+        max-width: 960px;
+        max-height: 85vh;
+        background: #111110;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+        position: relative;
+        overflow-y: auto;
+        transform: scale(0.95) translateY(15px);
+        filter: blur(4px);
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .notebook-modal-overlay.open .notebook-modal-container {
+        transform: scale(1) translateY(0);
+        filter: blur(0px);
+      }
+      .notebook-modal-inner {
+        padding: 3rem 4rem;
+        position: relative;
+      }
+      .modal-close-btn {
+        position: absolute;
+        top: 2rem;
+        right: 2.5rem;
+        background: transparent;
+        border: none;
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        color: var(--tm);
+        cursor: pointer;
+        letter-spacing: 0.1em;
+        transition: color 0.25s;
+      }
+      .modal-close-btn:hover {
+        color: var(--gold);
+      }
+      .modal-header {
+        margin-bottom: 2.5rem;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.07);
+        padding-bottom: 1.5rem;
+      }
+      .modal-title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .modal-title {
+        font-family: var(--serif);
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: var(--tp);
+        margin: 0;
+      }
+      .modal-meta-row {
+        display: flex;
+        gap: 1.5rem;
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        color: var(--tm);
+        margin-top: 0.5rem;
+      }
+      .modal-meta-row .status-dot {
+        width: 5px;
+        height: 5px;
+        background-color: var(--gold);
+      }
+      .modal-actions {
+        display: flex;
+        gap: 1.2rem;
+        margin-top: 0.8rem;
+      }
+      .modal-action-btn {
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        color: var(--tp);
+        text-decoration: none;
+        border: 1px solid var(--b1);
+        padding: 0.45rem 1rem;
+        transition: border-color 0.2s, color 0.2s;
+      }
+      .modal-action-btn:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+      .modal-body-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 3.5rem;
+      }
+      .modal-column-left {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .modal-column-right {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        border-left: 1px dashed rgba(255, 255, 255, 0.05);
+        padding-left: 3rem;
+      }
+      .modal-section-title {
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .modal-section-title::before {
+        content: "";
+        width: 14px;
+        height: 1px;
+        background-color: var(--gold);
+      }
+      .modal-text {
+        font-size: 0.88rem;
+        color: var(--ts);
+        line-height: 1.7;
+        margin-bottom: 0;
+      }
+      .modal-points-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+      }
+      .modal-points-list li {
+        font-size: 0.86rem;
+        color: var(--ts);
+        line-height: 1.6;
+        padding-left: 1.1rem;
+        position: relative;
+      }
+      .modal-points-list li::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        color: var(--tm);
+        font-size: 0.72rem;
+      }
+      .modal-blueprint-visuals {
+        margin-top: 1rem;
+      }
+      .modal-blueprint-box {
+        width: 100%;
+        height: 220px;
+        background: #080807;
+        border: 1px solid rgba(200, 184, 122, 0.08);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .modal-blueprint-box::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(200, 184, 122, 0.015) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(200, 184, 122, 0.015) 1px, transparent 1px);
+        background-size: 15px 15px;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .modal-blueprint-box img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.65;
+        transition: opacity 0.3s;
+      }
+      .modal-blueprint-box:hover img {
+        opacity: 0.95;
+      }
+      .modal-blueprint-text {
+        position: absolute;
+        bottom: 10px;
+        left: 12px;
+        right: 12px;
+        background: rgba(10, 10, 8, 0.85);
+        padding: 4px 8px;
+        border-left: 2px solid var(--gold);
+        pointer-events: none;
+        z-index: 2;
+        font-family: var(--mono);
+        font-size: 0.58rem;
+        color: rgba(200, 184, 122, 0.8);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+      }
+      .blueprint-zoom-icon {
+        position: absolute;
+        inset: 0;
+        background: rgba(10, 10, 8, 0.75);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        color: var(--gold);
+        letter-spacing: 0.12em;
+        z-index: 3;
+        pointer-events: none;
+      }
+      .modal-blueprint-box:hover .blueprint-zoom-icon {
+        opacity: 1;
+      }
+      .lightbox-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 3000;
+        background-color: rgba(5, 5, 4, 0.98);
+        backdrop-filter: blur(20px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .lightbox-overlay.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .lightbox-content {
+        max-width: 90%;
+        max-height: 85vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform: scale(0.95);
+        filter: blur(10px);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .lightbox-overlay.open .lightbox-content {
+        transform: scale(1);
+        filter: blur(0px);
+      }
+      .lightbox-content img {
+        max-width: 100%;
+        max-height: 80vh;
+        object-fit: contain;
+        border: 1px solid rgba(200, 184, 122, 0.15);
+        box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+      }
+      .lightbox-caption {
+        margin-top: 1.2rem;
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        color: var(--gold);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        text-align: center;
+      }
+      .lightbox-close-btn {
+        position: absolute;
+        top: 2rem;
+        right: 2.5rem;
+        background: transparent;
+        border: none;
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        color: var(--tm);
+        cursor: pointer;
+        letter-spacing: 0.1em;
+        transition: color 0.25s;
+        z-index: 3010;
+      }
+      .lightbox-close-btn:hover {
+        color: var(--gold);
+      }
+
+      @media (max-width: 900px) {
+        .carousel-wrapper {
+          height: 320px;
+        }
+        .carousel-track {
+          width: 200px;
+          height: 280px;
+        }
+        .carousel-card {
+          width: 200px;
+          height: 280px;
+        }
+        .modal-body-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .modal-column-right {
+          border-left: none;
+          padding-left: 0;
+          border-top: 1px dashed rgba(255, 255, 255, 0.07);
+          padding-top: 2rem;
+        }
+        .notebook-modal-inner {
+          padding: 2rem 2.2rem;
+        }
       }
 
       /* Proficiency */
@@ -1419,48 +1948,45 @@
               </div>
             </div>
 
-            <!-- Projects -->
-            <div class="subsec-title reveal">Projects</div>
-            <div class="proj-grid reveal">
-              <div class="proj-card">
-                <div class="proj-tag">Hackathon · Google Gen AI</div>
-                <div class="proj-name">AI-Powered Multilingual Assistant</div>
-                <p class="proj-desc">
-                  Multilingual NLP wrapper using Gemini and GCP APIs with
-                  optimised system prompts for local-language translation.
-                </p>
-                <div class="proj-stack">
-                  <span class="pill">Gemini API</span
-                  ><span class="pill">GCP</span><span class="pill">NLP</span
-                  ><span class="pill">Python</span>
+            <!-- Selected Systems (Curated Exhibition) -->
+            <div class="subsec-title reveal">Selected Systems</div>
+            
+            <div class="blueprint-floor reveal" id="systems-showcase">
+              <!-- Grid Floor Coordinate Marks (Decorative) -->
+              <div class="blueprint-coord" style="top: 10px; left: 15px;">LAT // 28.6139° N</div>
+              <div class="blueprint-coord" style="top: 10px; right: 15px;">LNG // 77.2090° E</div>
+              <div class="blueprint-coord" style="bottom: 10px; left: 15px;">SYS_ARCH // GRID_V1.02</div>
+              <div class="blueprint-coord" style="bottom: 10px; right: 15px;">SCALE // 1 : 12.5</div>
+              
+              <!-- Floating Active Title -->
+              <div class="carousel-info-above">
+                <h3 id="active-title"><a href="#" target="_blank">SYSTEM</a></h3>
+              </div>
+
+              <!-- 3D Carousel Wrapper -->
+              <div class="carousel-wrapper" id="carousel-wrapper">
+                <div class="carousel-track" id="carousel-track">
+                  <!-- JS will dynamically populate cards here -->
                 </div>
               </div>
-              <div class="proj-card">
-                <div class="proj-tag">Backend · REST API</div>
-                <div class="proj-name">Task Management REST API</div>
-                <p class="proj-desc">
-                  Scalable REST API with centralised error handling and
-                  relational schema design. Swagger/OpenAPI documented.
-                </p>
-                <div class="proj-stack">
-                  <span class="pill">Node.js</span
-                  ><span class="pill">PostgreSQL</span
-                  ><span class="pill">Swagger</span
-                  ><span class="pill">MVC</span>
+
+              <!-- Floating Active Metadata -->
+              <div class="carousel-info-below">
+                <div class="carousel-metadata-row">
+                  <span class="meta-year" id="active-year">2026</span>
+                  <div class="meta-divider"></div>
+                  <span class="meta-status" id="active-status">
+                    <span class="status-dot"></span>
+                    <span id="active-status-text">DEPLOYED</span>
+                  </span>
                 </div>
-              </div>
-              <div class="proj-card">
-                <div class="proj-tag">Data · Automation</div>
-                <div class="proj-name">Data Analytics & Automation Tool</div>
-                <p class="proj-desc">
-                  Python-SQL pipeline improving analytical efficiency by 35%
-                  through automated data processing workflows.
-                </p>
-                <div class="proj-stack">
-                  <span class="pill">Python</span><span class="pill">SQL</span
-                  ><span class="pill">ETL</span
-                  ><span class="pill">Automation</span>
+                <div class="carousel-tech-stack" id="active-tech">
+                  <!-- JS will dynamically populate pills here -->
                 </div>
+                <p class="carousel-description" id="active-desc">
+                  System Description
+                </p>
+                <button class="view-system-btn" id="active-view-btn">View System →</button>
               </div>
             </div>
 
@@ -2275,6 +2801,563 @@
           btn.textContent = "Start the conversation →";
         }, 900);
       });
+    </script>
+
+    <!-- Notebook Modal Overlay -->
+    <div class="notebook-modal-overlay" id="notebook-modal">
+      <div class="notebook-modal-container">
+        <div class="notebook-modal-inner">
+          <button class="modal-close-btn" id="modal-close">ESC // CLOSE</button>
+          
+          <div class="modal-header">
+            <div class="modal-title-row">
+              <div>
+                <h2 class="modal-title" id="modal-project-title">PROJECT TITLE</h2>
+                <div class="modal-meta-row">
+                  <span id="modal-project-year">2026</span>
+                  <span style="display: flex; align-items: center; gap: 0.4rem;">
+                    <span class="status-dot"></span>
+                    <span id="modal-project-status">PROTOTYPE</span>
+                  </span>
+                </div>
+              </div>
+              <div class="modal-actions" id="modal-project-links">
+                <!-- Links injected dynamically -->
+              </div>
+            </div>
+          </div>
+          
+          <div class="modal-body-grid">
+            <div class="modal-column-left">
+              <div>
+                <h4 class="modal-section-title">Why I Built It</h4>
+                <p class="modal-text" id="modal-project-motivation">Motivation text...</p>
+              </div>
+              
+              <div>
+                <h4 class="modal-section-title">Technical Challenges</h4>
+                <ul class="modal-points-list" id="modal-project-challenges">
+                  <!-- Challenges list items -->
+                </ul>
+              </div>
+            </div>
+            
+            <div class="modal-column-right">
+              <div>
+                <h4 class="modal-section-title">Key Decisions</h4>
+                <ul class="modal-points-list" id="modal-project-decisions">
+                  <!-- Decisions list items -->
+                </ul>
+              </div>
+              
+              <div>
+                <h4 class="modal-section-title">System Blueprint / Visuals</h4>
+                <div class="modal-blueprint-visuals">
+                  <div class="modal-blueprint-box" id="modal-blueprint-trigger" style="cursor: zoom-in;">
+                    <img id="modal-project-blueprint-img" src="" alt="System Blueprint" />
+                    <div class="modal-blueprint-text" id="modal-project-blueprint-text">Blueprint Spec v1.02</div>
+                    <div class="blueprint-zoom-icon">🔍 CLICK TO EXPAND SYSTEM</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blueprint Lightbox Modal -->
+    <div class="lightbox-overlay" id="blueprint-lightbox">
+      <button class="lightbox-close-btn" id="lightbox-close">ESC // CLOSE</button>
+      <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="System Blueprint Full View" />
+        <div class="lightbox-caption" id="lightbox-caption">SYSTEM // ARCH_SPEC</div>
+      </div>
+    </div>
+
+    <!-- Selected Systems Carousel JavaScript -->
+    <script>
+      (function() {
+        "use strict";
+
+        const PROJECTS = [
+          {
+            name: "AtomAlign",
+            initials: "Aa",
+            year: "2025",
+            tech: ["PostgreSQL", "Prisma", "Node.js", "Next.js"],
+            status: "Prototype",
+            desc: "A structured goal tracking platform replacing spreadsheets with role-based visibility.",
+            github: "github.com/li1code/AtomAlign",
+            demo: null,
+            image: "images/atomalign_blueprint.png",
+            motivation: "Manual goal management often creates blind spots, fragmented accountability, and poor visibility across teams. AtomAlign explores how structured workflows and operational intelligence can make organizational execution measurable and transparent.",
+            challenges: [
+              "Managing strict goal lifecycle transitions across multiple approval stages",
+              "Building a flexible progress scoring engine for different measurement models",
+              "Enforcing role-based visibility and authorization across organizational hierarchies"
+            ],
+            decisions: [
+              "Chose PostgreSQL and Prisma to model complex organizational relationships",
+              "Used shared validation layers to ensure consistent business rules across frontend and backend",
+              "Designed automated escalation workflows to prevent approval bottlenecks"
+            ],
+            spec: "DB_SCHEMA // GOAL_ENGINE_CONF"
+          },
+          {
+            name: "APL PitchSide",
+            initials: "Ps",
+            year: "2025",
+            tech: ["Gemini", "Multi-Agent AI", "Computer Vision"],
+            status: "Prototype",
+            desc: "A multi-agent sports commentary platform transforming cricket footage into synchronized AI match events.",
+            github: "github.com/li1code/APL_Pitch",
+            demo: null,
+            image: "images/pitchside_blueprint.png",
+            motivation: "Watching cricket remotely often becomes a passive experience. I wanted to explore whether multiple AI agents could recreate the feeling of watching together through synchronized commentary, analysis, and reactions.",
+            challenges: [
+              "Maintaining narrative consistency across multiple agents",
+              "Synchronizing commentary timing with live match events",
+              "Fetching live scores and finding the real-time match events",
+              "Managing latency introduced by video frame analysis"
+            ],
+            decisions: [
+              "Used event-driven orchestration instead of direct agent communication",
+              "Separated event detection from commentary generation",
+              "Used websockets for real-time event search and parsing for live scores",
+              "Prioritized synchronization quality over commentary frequency"
+            ],
+            spec: "AGENT_ORCH // TIMELINE_SYNC"
+          },
+          {
+            name: "BazaarBot AI",
+            initials: "Bb",
+            year: "2025",
+            tech: ["Gemini API", "Firebase", "Vertex AI"],
+            status: "Hackathon",
+            desc: "An AI-powered multilingual platform helping artisans transform stories into accessible digital commerce.",
+            github: "github.com/li1code/BazaarBot-AI",
+            demo: null,
+            image: "images/bazaarbot_blueprint.png",
+            motivation: "Many artisans struggle to communicate their stories and products to a wider audience. BazaarBot explores how multilingual AI can bridge language, storytelling, and discovery barriers in cultural commerce.",
+            challenges: [
+              "Transforming unstructured stories into meaningful product narratives",
+              "Maintaining consistency across multiple languages",
+              "Building recommendation workflows using AI-generated embeddings"
+            ],
+            decisions: [
+              "Leveraged Firebase's serverless ecosystem for rapid iteration",
+              "Designed specialized prompt workflows for translation and storytelling",
+              "Prioritized multilingual accessibility across content generation flows"
+            ],
+            spec: "TRANSLATION_FLOW // EMBEDDINGS"
+          },
+          {
+            name: "Nature's Beauty Salon",
+            initials: "Ns",
+            year: "2025",
+            tech: ["PostgreSQL", "Prisma", "Node.js", "Vanilla JS"],
+            status: "Deployed",
+            desc: "A full-stack web application that manages salon services, bridal offerings, and appointments.",
+            github: null,
+            demo: "https://natures-beauty-ruby.vercel.app/",
+            image: "images/salon_blueprint.png",
+            motivation: "I built this to provide a streamlined digital presence and operational tool for a salon business. The goal was to centralize appointment inquiries, showcase services through dynamic galleries, and provide administrators with a secure environment to manage content and customer leads.",
+            challenges: [
+              "Combining a static frontend with a serverless Node.js backend within a single deployment architecture",
+              "Managing secure image uploads and media workflows using Cloudinary integration",
+              "Implementing JWT-based authentication and protected administrative routes"
+            ],
+            decisions: [
+              "Chose Vanilla HTML, CSS, and JavaScript to keep the frontend lightweight and fast",
+              "Used PostgreSQL and Prisma ORM to maintain a relational model for leads and assets",
+              "Leveraged Vercel Serverless Functions to separate backend logic from static assets"
+            ],
+            spec: "RELATIONAL_MODEL // VERCEL_API"
+          },
+          {
+            name: "Data Analysis & Extraction Tool",
+            initials: "Dt",
+            year: "2024",
+            tech: ["Python", "Pandas", "Matplotlib"],
+            status: "Prototype",
+            desc: "A Python-based analysis tool for loading, filtering, extracting, and visualizing CSV datasets.",
+            github: "github.com/li1code/Data-Analysis-and-Extraction-tool",
+            demo: null,
+            image: "images/data_tool_blueprint.png",
+            motivation: "I wanted to create an accessible way to explore data structures and instantly visualize relationships. The project focused on handling imperfect search queries while making data exploration faster and more intuitive.",
+            challenges: [
+              "Calculating closest matches when exact queries fail",
+              "Handling both numeric and non-numeric datasets dynamically",
+              "Managing missing data and invalid file inputs gracefully"
+            ],
+            decisions: [
+              "Relied on Pandas for filtering and data manipulation instead of custom parsing logic",
+              "Used NumPy regression models to generate trend lines automatically",
+              "Kept the tool CLI-based to prioritize simplicity and rapid execution"
+            ],
+            spec: "PANDAS_PIPE // NUMPY_REGRESS"
+          },
+          {
+            name: "Bill Management System",
+            initials: "Bm",
+            year: "2024",
+            tech: ["C++", "OOP", "File Handling"],
+            status: "Prototype",
+            desc: "A console-based billing application that manages product inventories, invoices, and records.",
+            github: "github.com/li1code/Bill-Management-System",
+            demo: null,
+            image: "images/bill_system_blueprint.png",
+            motivation: "I wanted to strengthen my understanding of object-oriented programming and persistent storage by building a complete billing workflow around a real-world retail scenario.",
+            challenges: [
+              "Preserving records across application restarts without a database",
+              "Dynamically generating bills containing multiple products",
+              "Synchronizing in-memory records with file-based storage"
+            ],
+            decisions: [
+              "Used file handling to persist product and billing information",
+              "Structured the application around dedicated OOP classes to separate responsibilities",
+              "Prioritized maintainability and clarity over complexity"
+            ],
+            spec: "FILE_IO // OOP_INVENTORY"
+          }
+        ];
+
+        class SystemsCarousel {
+          constructor(wrapper, track, projects) {
+            this.wrapper = wrapper;
+            this.track = track;
+            this.projects = projects;
+            this.cards = [];
+            this.currentIndex = 0;
+            this.targetOffset = 0;
+            this.currentOffset = 0;
+            
+            this.isDragging = false;
+            this.startX = 0;
+            this.draggedOffset = 0;
+            this.lastX = 0;
+            this.velocity = 0;
+            
+            this.init();
+          }
+          
+          init() {
+            this.buildCards();
+            this.bindEvents();
+            this.updateActiveInfo();
+            this.animate();
+          }
+          
+          buildCards() {
+            this.track.innerHTML = "";
+            this.projects.forEach((proj, idx) => {
+              const card = document.createElement("div");
+              card.className = "carousel-card";
+              card.innerHTML = `
+                <div class="card-content-wrap">
+                  <!-- Monogram / Typography Logo -->
+                  <div class="card-monogram">${proj.initials}</div>
+                  
+                  <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-end;">
+                    <!-- Drafting Divider -->
+                    <div class="card-drafting-line"></div>
+                    
+                    <!-- System Name & Spec -->
+                    <div class="card-system-code">${proj.name}</div>
+                    <div class="card-system-sub">SPEC_${proj.spec.split(" // ")[0]} // REV_${proj.year}</div>
+                  </div>
+                  
+                  <!-- Drafting Ticks -->
+                  <div class="card-tick top-left"></div>
+                  <div class="card-tick top-right"></div>
+                  <div class="card-tick bottom-left"></div>
+                  <div class="card-tick bottom-right"></div>
+                </div>
+              `;
+              
+              card.addEventListener("click", (e) => {
+                if (Math.abs(idx - this.currentOffset) < 0.1) {
+                  openModal(proj);
+                } else {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  this.targetOffset = idx;
+                }
+              });
+              
+              this.track.appendChild(card);
+              this.cards.push(card);
+            });
+          }
+          
+          bindEvents() {
+            // Mouse dragging
+            this.wrapper.addEventListener("mousedown", this.onDragStart.bind(this));
+            window.addEventListener("mousemove", this.onDragMove.bind(this));
+            window.addEventListener("mouseup", this.onDragEnd.bind(this));
+            
+            // Touch gestures
+            this.wrapper.addEventListener("touchstart", this.onDragStart.bind(this), { passive: true });
+            window.addEventListener("touchmove", this.onDragMove.bind(this), { passive: false });
+            window.addEventListener("touchend", this.onDragEnd.bind(this));
+            
+            // Mouse wheel scroll
+            this.wrapper.addEventListener("wheel", this.onWheel.bind(this), { passive: false });
+            
+            // Keyboard arrows
+            window.addEventListener("keydown", this.onKeyDown.bind(this));
+          }
+          
+          onDragStart(e) {
+            this.isDragging = true;
+            this.startX = this.getClientX(e);
+            this.lastX = this.startX;
+            this.draggedOffset = this.targetOffset;
+            this.velocity = 0;
+          }
+          
+          onDragMove(e) {
+            if (!this.isDragging) return;
+            if (e.cancelable) e.preventDefault();
+            
+            const currentX = this.getClientX(e);
+            const deltaX = currentX - this.startX;
+            this.velocity = currentX - this.lastX;
+            this.lastX = currentX;
+            
+            const dragFactor = 320;
+            this.targetOffset = this.draggedOffset - (deltaX / dragFactor);
+            this.targetOffset = Math.max(-0.5, Math.min(this.projects.length - 0.5, this.targetOffset));
+          }
+          
+          onDragEnd(e) {
+            if (!this.isDragging) return;
+            this.isDragging = false;
+            
+            let snapIndex = Math.round(this.targetOffset);
+            if (Math.abs(this.velocity) > 2) {
+              snapIndex = this.velocity > 0 ? Math.floor(this.targetOffset) : Math.ceil(this.targetOffset);
+            }
+            this.targetOffset = Math.max(0, Math.min(this.projects.length - 1, snapIndex));
+          }
+          
+          onWheel(e) {
+            const rect = this.wrapper.getBoundingClientRect();
+            if (
+              e.clientX >= rect.left && e.clientX <= rect.right &&
+              e.clientY >= rect.top && e.clientY <= rect.bottom
+            ) {
+              e.preventDefault();
+              if (Math.abs(e.deltaY) > 20) {
+                if (!this._wheelTimeout) {
+                  const dir = e.deltaY > 0 ? 1 : -1;
+                  this.targetOffset = Math.max(0, Math.min(this.projects.length - 1, this.targetOffset + dir));
+                  this._wheelTimeout = true;
+                  setTimeout(() => this._wheelTimeout = false, 350);
+                }
+              }
+            }
+          }
+          
+          onKeyDown(e) {
+            if (document.activeElement && (document.activeElement.tagName === "INPUT" || document.activeElement.tagName === "TEXTAREA")) return;
+            if (document.getElementById("notebook-modal").classList.contains("open")) return;
+            
+            if (e.key === "ArrowLeft") {
+              e.preventDefault();
+              this.targetOffset = Math.max(0, this.targetOffset - 1);
+            } else if (e.key === "ArrowRight") {
+              e.preventDefault();
+              this.targetOffset = Math.min(this.projects.length - 1, this.targetOffset + 1);
+            }
+          }
+          
+          getClientX(e) {
+            return e.touches ? e.touches[0].clientX : e.clientX;
+          }
+          
+          updateActiveInfo() {
+            const index = Math.max(0, Math.min(this.projects.length - 1, Math.round(this.currentOffset)));
+            if (index === this.currentIndex && this.hasInitializedInfo) return;
+            
+            this.currentIndex = index;
+            this.hasInitializedInfo = true;
+            
+            const proj = this.projects[index];
+            
+            const titleEl = document.getElementById("active-title");
+            const yearEl = document.getElementById("active-year");
+            const statusTextEl = document.getElementById("active-status-text");
+            const techEl = document.getElementById("active-tech");
+            const descEl = document.getElementById("active-desc");
+            
+            const rawLink = proj.demo || proj.github || "#";
+            const linkUrl = (rawLink !== "#" && !rawLink.startsWith("http")) ? `https://${rawLink}` : rawLink;
+            titleEl.innerHTML = `<a href="${linkUrl}" target="_blank">${proj.name}</a>`;
+            yearEl.textContent = proj.year;
+            statusTextEl.textContent = proj.status;
+            descEl.textContent = proj.desc;
+            
+            techEl.innerHTML = "";
+            proj.tech.slice(0, 4).forEach(t => {
+              const pill = document.createElement("span");
+              pill.className = "pill";
+              pill.textContent = t;
+              techEl.appendChild(pill);
+            });
+          }
+          
+          animate() {
+            requestAnimationFrame(this.animate.bind(this));
+            
+            const lerpSpeed = 0.08;
+            this.currentOffset += (this.targetOffset - this.currentOffset) * lerpSpeed;
+            this.updateActiveInfo();
+            
+            this.cards.forEach((card, idx) => {
+              const offset = idx - this.currentOffset;
+              const absOffset = Math.abs(offset);
+              
+              const spread = window.innerWidth < 900 ? 180 : 340;
+              const zSpread = window.innerWidth < 900 ? 120 : 220;
+              const rotationFactor = window.innerWidth < 900 ? 25 : 32;
+              
+              const tx = Math.sin(offset * Math.PI / 4) * spread;
+              const tz = (Math.cos(offset * Math.PI / 4) - 1) * zSpread;
+              const ry = -offset * rotationFactor;
+              const scale = Math.max(0.6, 1 - absOffset * 0.15);
+              const opacity = Math.max(0.12, 1 - absOffset * 0.45);
+              
+              card.style.transform = `translate3d(${tx}px, 0, ${tz}px) rotateY(${ry}deg) scale(${scale})`;
+              card.style.opacity = opacity;
+              card.style.zIndex = Math.round(100 - absOffset * 10);
+              
+              if (absOffset < 0.1) {
+                card.classList.add("active");
+              } else {
+                card.classList.remove("active");
+              }
+            });
+          }
+        }
+
+        const modal = document.getElementById("notebook-modal");
+        const modalClose = document.getElementById("modal-close");
+        const activeViewBtn = document.getElementById("active-view-btn");
+        
+        let currentActiveProject = null;
+
+        const lightbox = document.getElementById("blueprint-lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const lightboxCaption = document.getElementById("lightbox-caption");
+        const lightboxClose = document.getElementById("lightbox-close");
+        const blueprintTrigger = document.getElementById("modal-blueprint-trigger");
+        
+        blueprintTrigger.addEventListener("click", () => {
+          if (currentActiveProject) {
+            lightboxImg.src = currentActiveProject.image;
+            lightboxImg.alt = `${currentActiveProject.name} Blueprint`;
+            lightboxCaption.textContent = `${currentActiveProject.name} // FULL_SYSTEM_SCHEMATIC // REV_${currentActiveProject.year}`;
+            lightbox.classList.add("open");
+          }
+        });
+        
+        function closeLightbox() {
+          lightbox.classList.remove("open");
+        }
+        
+        lightboxClose.addEventListener("click", closeLightbox);
+        lightbox.addEventListener("click", (e) => {
+          if (e.target === lightbox) closeLightbox();
+        });
+
+        function openModal(proj) {
+          currentActiveProject = proj;
+          document.getElementById("modal-project-title").textContent = proj.name;
+          document.getElementById("modal-project-year").textContent = proj.year;
+          document.getElementById("modal-project-status").textContent = proj.status;
+          document.getElementById("modal-project-motivation").textContent = proj.motivation;
+          document.getElementById("modal-project-blueprint-text").textContent = `${proj.name} // SPEC_${proj.spec}`;
+          
+          const imgEl = document.getElementById("modal-project-blueprint-img");
+          if (imgEl) {
+            imgEl.src = proj.image;
+            imgEl.alt = `${proj.name} Blueprint`;
+          }
+          
+          const challengesList = document.getElementById("modal-project-challenges");
+          challengesList.innerHTML = "";
+          proj.challenges.forEach(c => {
+            const li = document.createElement("li");
+            li.textContent = c;
+            challengesList.appendChild(li);
+          });
+          
+          const decisionsList = document.getElementById("modal-project-decisions");
+          decisionsList.innerHTML = "";
+          proj.decisions.forEach(d => {
+            const li = document.createElement("li");
+            li.textContent = d;
+            decisionsList.appendChild(li);
+          });
+          
+          const linksContainer = document.getElementById("modal-project-links");
+          linksContainer.innerHTML = "";
+          if (proj.github) {
+            const githubLink = document.createElement("a");
+            githubLink.className = "modal-action-btn";
+            githubLink.href = proj.github.startsWith("http") ? proj.github : `https://${proj.github}`;
+            githubLink.target = "_blank";
+            githubLink.textContent = "Source Code ↗";
+            linksContainer.appendChild(githubLink);
+          }
+          if (proj.demo) {
+            const demoLink = document.createElement("a");
+            demoLink.className = "modal-action-btn";
+            demoLink.href = proj.demo.startsWith("http") ? proj.demo : `https://${proj.demo}`;
+            demoLink.target = "_blank";
+            demoLink.textContent = "Live Demo ↗";
+            linksContainer.appendChild(demoLink);
+          }
+          
+          modal.classList.add("open");
+          document.body.classList.add("intro-lock");
+        }
+        
+        function closeModal() {
+          modal.classList.remove("open");
+          closeLightbox();
+          if (!document.getElementById("entry-overlay")) {
+            document.body.classList.remove("intro-lock");
+          }
+        }
+        
+        modalClose.addEventListener("click", closeModal);
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) closeModal();
+        });
+        window.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            if (lightbox.classList.contains("open")) {
+              closeLightbox();
+            } else {
+              closeModal();
+            }
+          }
+        });
+        
+        activeViewBtn.addEventListener("click", () => {
+          const activeProj = PROJECTS[carousel.currentIndex];
+          openModal(activeProj);
+        });
+
+        const carousel = new SystemsCarousel(
+          document.getElementById("carousel-wrapper"),
+          document.getElementById("carousel-track"),
+          PROJECTS
+        );
+      })();
     </script>
   </body>
 </html>
